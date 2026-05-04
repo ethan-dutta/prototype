@@ -4,6 +4,8 @@ from django.urls import include, path
 from debug_toolbar.toolbar import debug_toolbar_urls
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
+
 
 """
 django1 URL Configuration
@@ -29,11 +31,12 @@ from django.urls import path
 from django.urls import include, re_path
 
 urlpatterns = [
-
     path('admin/', admin.site.urls),
-    re_path(r'^$', MyApp1.views.index, name = 'index'),
-    re_path(r'home$', MyApp1.views.index, name = 'home'),
+    re_path(r'^$', MyApp1.views.login, name = 'login'),
+    re_path(r'home$', MyApp1.views.login, name = 'home'),
+    path('index/', MyApp1.views.index, name='index'),
     path("__debug__/", include("debug_toolbar.urls")),
+    path('venue.pdf', MyApp1.views.venue_pdf, name = 'venue_pdf'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
     

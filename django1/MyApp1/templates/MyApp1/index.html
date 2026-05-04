@@ -9,11 +9,11 @@
 
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" 
-                    type="button" data-bs-toggle="collapse" 
-                    data-bs-target="#navbarSupportedContent" 
-                    aria-controls="navbarSupportedContent" 
-                    aria-expanded="false" 
+            <button class="navbar-toggler"
+                    type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
                     aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -76,6 +76,10 @@
                     <li class="nav-item">
                         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'venue_pdf' %}">Venue PDF File</a>
+
+                    </li>
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
@@ -100,33 +104,28 @@
     {% endif %}
     <table>
         <form method="post" action="{% url 'index' %}">
-           {% csrf_token %}
+            {% csrf_token %}
             {% if not form.instance.id %}
-            <tr>
-                {% include 'MyApp1/save.html' %}
-             </tr>
-        {% endif %}
-        <tr>
-            <th>Teacher Name</th>
-            <th>Teacher Area</th>
-            <th>Teacher College</th>
-            <th>College ID</th>
-        </tr>
-            {% for teach in teach %}
-        <tr>
-            {% if form.instance.id == teach.id %}
-            {% include 'MyApp1/save.html' %}
-            {% else %}
-            <td>{{teach.name}}</td>
-            <td>{{teach.area}}</td>
-            <td>{{teach.college.namer}}</td>
-            <td>{{teach.college.college_id}}</td>
-            <td><button formnovalidate name="edit" value="{{teach.id}}">Edit</button></td>
-            <td><button formnovalidate name="delete" value="{{teach.id}}">Delete</button></td>
+                <tr>
+                    {% include 'MyApp1/save.html' %}
+                    </tr>
             {% endif %}
 
-        </tr>
-        {% endfor %}
+            {% for teach in teach %}
+                <tr>
+                    {% if form.instance.id == teach.id %}
+                    {% include 'MyApp1/save.html' %}
+                    {% else %}
+                    <td>{{teach.name}}</td>
+                    <td>{{teach.area}}</td>
+                    <td>{{teach.college.namer}}</td>
+                    <td>{{teach.college.college_id}}</td>
+                    <td><button formnovalidate name="edit" value="{{teach.id}}">Edit</button></td>
+                    <td><button formnovalidate name="delete" value="{{teach.id}}">Delete</button></td>
+                    {% endif %}
+
+                </tr>
+            {% endfor %}
 
 
 
@@ -136,6 +135,3 @@
 
 </body>
 </html>
-
-
-

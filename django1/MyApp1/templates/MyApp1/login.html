@@ -1,0 +1,6 @@
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- Renders fields wrapped in <p> tags -->
+    <button formnovalidate name = "submit" type="submit" href="index.html">Send</button>
+    
+    <h1>{{errorr}}</h1>
