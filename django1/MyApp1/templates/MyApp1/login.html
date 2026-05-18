@@ -1,6 +1,18 @@
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}  <!-- Renders fields wrapped in <p> tags -->
-    <button formnovalidate name = "submit" type="submit" href="index.html">Send</button>
-    
-    <h1>{{errorr}}</h1>
+    {{ form.as_p }}
+
+    {% if counter >= 3 %}
+    <p>Too many failed login attempts. Please try again later.</p>
+    <input type="submit" name="submit" class="btn btn-primary" value="Send" disabled />
+    {{timer}}
+    {% else %}
+    <button formnovalidate name="submit" type="submit" href="index.html">Send</button>
+    {% endif %}
+
+</form>
+
+
+
+{{errorr}}
+

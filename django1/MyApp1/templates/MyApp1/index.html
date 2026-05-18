@@ -77,7 +77,6 @@
                         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'venue_pdf' %}">Venue PDF File</a>
 
                     </li>
                 </ul>
@@ -102,30 +101,37 @@
     </table>
     {% else %}
     {% endif %}
+    <form method="post" action="{% url 'index' %}">
+        {% csrf_token %}
+        {{formset.management_form}}
+        {{formset.as_p}}
+        <button formnovalidate name="submit_all" type="submit">Submit All</button>
+    </form>
     <table>
         <form method="post" action="{% url 'index' %}">
             {% csrf_token %}
             {% if not form.instance.id %}
-                <tr>
-                    {% include 'MyApp1/save.html' %}
-                    </tr>
+        <tr>
+            {% include 'MyApp1/save.html' %}
+        </tr>
+        {% endif %}
+
+        {% for teach in teach %}
+        <tr>
+            {% if form.instance.id == teach.id %}
+            {% include 'MyApp1/save.html' %}
+            {% else %}
+
+            <td>{{teach.name}}</td>
+            <td>{{teach.area}}</td>
+            <td>{{teach.college.namer}}</td>
+            <td>{{teach.college.college_id}}</td>
+            <td><button formnovalidate name="edit" value="{{teach.id}}">Edit</button></td>
+            <td><button formnovalidate name="delete" value="{{teach.id}}">Delete</button></td>
             {% endif %}
 
-            {% for teach in teach %}
-                <tr>
-                    {% if form.instance.id == teach.id %}
-                    {% include 'MyApp1/save.html' %}
-                    {% else %}
-                    <td>{{teach.name}}</td>
-                    <td>{{teach.area}}</td>
-                    <td>{{teach.college.namer}}</td>
-                    <td>{{teach.college.college_id}}</td>
-                    <td><button formnovalidate name="edit" value="{{teach.id}}">Edit</button></td>
-                    <td><button formnovalidate name="delete" value="{{teach.id}}">Delete</button></td>
-                    {% endif %}
-
-                </tr>
-            {% endfor %}
+        </tr>
+        {% endfor %}
 
 
 

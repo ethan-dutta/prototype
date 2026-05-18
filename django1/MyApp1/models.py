@@ -13,6 +13,14 @@ class teacher (models.Model):
     area = models.CharField(max_length=30)
     college = models.ForeignKey(college, on_delete=models.CASCADE)
 
+class Book(models.Model):
+    title = models.CharField(max_length = 100)
+    author = models.CharField(max_length = 100)
+    pdf = models.FileField(upload_to='books/pdfs')
+
+    def __str__(self):
+        return self.title
+
 
 
 

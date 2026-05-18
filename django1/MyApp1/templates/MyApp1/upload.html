@@ -1,0 +1,15 @@
+<h2>Upload File</h2>
+<form method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    <input type="file" name="document">
+    {{ form.as_p }}
+    <button type="submit" name="submit">Upload</button>
+</form>
+{% if url %}
+<p>File uploaded at: <a href="{{ url }}">{{ url }}</a></p>
+{% endif %}
+<img src="{{ object.image_field.url }}" alt="Uploaded Image">
+{% if url %}
+<li><img src="{{url}}" height="420" /></li>
+{% endif %}

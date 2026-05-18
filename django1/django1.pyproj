@@ -54,6 +54,7 @@
     <Content Include="MyApp1\templates\MyApp1\index.html" />
     <Content Include="MyApp1\templates\MyApp1\login.html" />
     <Content Include="MyApp1\templates\MyApp1\save.html" />
+    <Content Include="MyApp1\templates\MyApp1\upload.html" />
     <Content Include="requirements.txt" />
     <Content Include="static\S1 Weekly Planner 2026_DigitalSolutions.pdf" />
   </ItemGroup>

@@ -30,13 +30,18 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include, re_path
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    re_path(r'^$', MyApp1.views.login, name = 'login'),
-    re_path(r'home$', MyApp1.views.login, name = 'home'),
+urlpatterns = [    
+    path('upload/', MyApp1.views.upload, name='upload'),
     path('index/', MyApp1.views.index, name='index'),
+    path('', MyApp1.views.login, name='login'),
+    path('admin/', admin.site.urls),
+
+    re_path(r'home$', MyApp1.views.upload, name = 'home'),
+    path('login/', MyApp1.views.login, name = 'login'),
     path("__debug__/", include("debug_toolbar.urls")),
-    path('venue.pdf', MyApp1.views.venue_pdf, name = 'venue_pdf'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-    
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+     
