@@ -40,6 +40,8 @@ def login(request):
                 counter += 1
                 # loginform()
                 print(counter)
+                if counter > 3:
+                    counter = 0
     context['counter'] = counter
 
     context['form'] = form

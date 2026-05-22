@@ -4,10 +4,26 @@
 
     {% if counter >= 3 %}
     <p>Too many failed login attempts. Please try again later.</p>
+    <p name="demo" id="demo"></p>
     <input type="submit" name="submit" class="btn btn-primary" value="Send" disabled />
-    {{timer}}
+    <script>
+        var timer = 5;
+        setInterval(timing, 1000)
+        function timing() {
+            if (timer > -1) {
+                document.getElementById("demo").innerHTML = timer--;
+            }
+            else {
+                document.getElementsByName('submit')[0].disabled = false;
+            }
+        }
+    </script>
+    {% if demo == 0 %}
+    <button formnovalidate name="submit" type="submit" href="index.html">Send</button>
+    {% endif %}
     {% else %}
     <button formnovalidate name="submit" type="submit" href="index.html">Send</button>
+
     {% endif %}
 
 </form>
