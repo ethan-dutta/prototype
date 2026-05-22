@@ -49,9 +49,10 @@ def index(request):
     context = {}
     form = teacherform()
     formsetter = modelformset_factory(teacher, fields=('name','area','college'), extra = 4)
-    formset = formsetter(queryset=teacher.objects.none(), initial = [{"name":request.POST.get('name') or None, 
-                                                                      "area":request.POST.get('area') or None, 
-                                                                      "college":request.POST.get('college') or None} for i in range(5)])
+    formset = formsetter(queryset=teacher.objects.none(), initial = 
+                         [{"name":request.POST.get('name') or None, 
+                            "area":request.POST.get('area') or None, 
+                            "college":request.POST.get('college') or None} for i in range(5)])
     context['formset']=formset
     teach = teacher.objects.select_related('college').all()
     cg = college.objects.all()
