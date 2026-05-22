@@ -23,8 +23,6 @@ def upload(request):
 counter = 0
 def login(request):
     context = {} 
-    timer = 30
-    context['timer'] = timer
     global counter
     form = loginform(request, data=request.POST)
     if request.method == "POST":
