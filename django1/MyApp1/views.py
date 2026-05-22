@@ -19,11 +19,10 @@ def upload(request):
         name = fs.save(uploaded_file.name, uploaded_file)
         context['url'] = fs.url(name)
     return render(request, 'MyApp1/upload.html', context)
-
-counter = 0
+    
 def login(request):
     context = {} 
-    global counter
+    counter = 0
     form = loginform(request, data=request.POST)
     if request.method == "POST":
         if 'submit' in request.POST:
